@@ -54,5 +54,20 @@ namespace WebApplication1.Controllers
             
             return Ok(superHeroes);
         }
+        
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<SuperHero>>> UpdateHero(int id, SuperHero request)
+        {
+            var hero = superHeroes.Find(sh => sh.Id == id);
+
+            if (hero is null) return NotFound("Sorry, but this hero does not exist");
+
+            hero.FirstName = request.FirstName;
+            hero.LastName = request.LastName;
+            hero.Name = request.Name;
+            hero.Place = request.Place;
+            
+            return Ok(superHeroes);
+        }
     }
 }
