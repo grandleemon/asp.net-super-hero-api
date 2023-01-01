@@ -69,5 +69,17 @@ namespace WebApplication1.Controllers
             
             return Ok(superHeroes);
         }
+        
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<SuperHero>>> DeleteHero(int id)
+        {
+            var hero = superHeroes.Find(sh => sh.Id == id);
+
+            if (hero is null) return NotFound("Sorry, but this hero does not exist");
+
+            superHeroes.Remove(hero);
+            
+            return Ok(superHeroes);
+        }
     }
 }
