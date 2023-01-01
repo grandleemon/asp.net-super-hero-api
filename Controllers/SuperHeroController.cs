@@ -46,5 +46,13 @@ namespace WebApplication1.Controllers
             
             return Ok(hero);
         }
+        
+        [HttpPost]
+        public async Task<ActionResult<List<SuperHero>>> AddHero(SuperHero hero)
+        {
+            superHeroes.Add(hero);
+            
+            return Ok(superHeroes);
+        }
     }
 }
